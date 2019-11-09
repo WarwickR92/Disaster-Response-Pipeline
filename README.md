@@ -6,9 +6,6 @@ The project loads, cleans & merges both the messages & catagories training data 
 
 To run the web app please use the following instructions:
 
-### Directions for new data input:
-
-
 ### Instructions to run the web app:
 1. Run the following commands in the project's root directory to set up your database and model.
 
