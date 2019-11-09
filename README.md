@@ -23,10 +23,10 @@ To run the web app please use the following instructions:
 3. Go to http://0.0.0.0:3001/
 
 ### Explaination of files in the web app directory:
-|_ README.md: Explains the context, directions for use and purpose of the web app.
-|_ PipelineDatabase.db: An example database created by the web app containing training data.
-|_ data/disaster_messages.csv: Example messages that can be used to train the machine learning model.
-|_ data/disaster_categories.csv: Example categories that are linked to the above messages.
-|_ data/process_data.py: The python file that loads, cleans & merges both the messages & catagories training data.
-|_ models/train_classifier.py: The python file that trains the Random Forests ml model.
-|_ app/run.py: The python file that runs the visualisations and creates the web app.
+- README.md: Explains the context, directions for use and purpose of the web app.
+- PipelineDatabase.db: An example database created by the web app containing training data.
+- data/disaster_messages.csv: Example messages that can be used to train the machine learning model.
+- data/disaster_categories.csv: Example categories that are linked to the above messages.
+- data/process_data.py: The python file that loads, cleans & merges both the messages & catagories training data.
+- models/train_classifier.py: The python file that trains the Random Forests ml model.
+- app/run.py: The python file that runs the visualisations and creates the web app.
