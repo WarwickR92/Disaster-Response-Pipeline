@@ -1,6 +1,6 @@
 # Disaster Response Pipeline
 
-This project is designed to create a web app where an emergency worker can input a new message and get a text classification results for 36 different categories. The web app will also display visualizations of the data so that decisions can be made based on the results.
+This project is designed to create a web app where an emergency worker can input a new message and get a text classification results for 36 different categories. The web app will also display visualizations of the training data to give an idea of which catagories the model will work best at classifying (the more values the better the classifier).
 
 The project loads, cleans & merges both the messages & catagories training data in python. This training data is used in a RandomForests machicne learning method to train a model to predict the classification on future messages. The new messages can be added into the web app and Flask is used to display the data.
 
