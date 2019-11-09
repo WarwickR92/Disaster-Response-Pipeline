@@ -27,3 +27,6 @@ To run the web app please use the following instructions:
 - data/process_data.py: The python file that loads, cleans & merges both the messages & catagories training data.
 - models/train_classifier.py: The python file that trains the Random Forests ml model.
 - app/run.py: The python file that runs the visualisations and creates the web app.
+
+
+Please note that the data provided for this project has came from Figure Eight: https://www.figure-eight.com/
