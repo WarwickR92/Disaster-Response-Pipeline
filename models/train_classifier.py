@@ -29,7 +29,7 @@ def load_data(database_filepath):
     engine = create_engine('sqlite:///PipelineDatabase.db')
 
     # load in the file from the database
-    df = pd.read_sql_table('Catagory_Data', engine) 
+    df = pd.read_sql_table(database_filepath, engine) 
 
     # save the input variables for the ml
     X = df.message.values
@@ -71,12 +71,12 @@ def build_model():
 
     # specify parameters for grid search
     parameters = {
-        'clf__estimator__n_estimators': [10, 50, 100],
-        'clf__estimator__min_samples_split': [2, 4]
+        'clf__estimator__n_estimators': [10, 20]
+        # 'clf__estimator__min_samples_split': [2, 4]
     }
 
     # create grid search object
-    clf = GridSearchCV(pipeline, param_grid=parameters, n_jobs=2, verbose=2)
+    clf = GridSearchCV(pipeline, param_grid=parameters)
 
     return clf
 

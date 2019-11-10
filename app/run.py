@@ -30,7 +30,7 @@ def tokenize(text):
     return clean_tokens
 
 # load data
-engine = create_engine('sqlite:///../data/PipelineDatabase.db')
+engine = create_engine('sqlite:///../PipelineDatabase.db')
 df = pd.read_sql_table('data/DisasterResponse.db', engine)
 
 # load model
