@@ -2,12 +2,16 @@ import json
 import plotly
 import pandas as pd
 
+import nltk
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
+nltk.download('punkt')
+nltk.download('wordnet')
 
 from flask import Flask
 from flask import render_template, request, jsonify
 from plotly.graph_objs import Bar
+from plotly.graph_objs import Pie
 from sklearn.externals import joblib
 from sqlalchemy import create_engine
 
@@ -26,11 +30,11 @@ def tokenize(text):
     return clean_tokens
 
 # load data
-engine = create_engine('sqlite:///../data/YourDatabaseName.db')
-df = pd.read_sql_table('YourTableName', engine)
+engine = create_engine('sqlite:///../data/PipelineDatabase.db')
+df = pd.read_sql_table('data/DisasterResponse.db', engine)
 
 # load model
-model = joblib.load("../models/your_model_name.pkl")
+model = joblib.load("../models/classifier.pkl")
 
 
 # index webpage displays cool visuals and receives user input text for model
@@ -38,32 +42,44 @@ model = joblib.load("../models/your_model_name.pkl")
 @app.route('/index')
 def index():
     
-    # extract data needed for visuals
-    # TODO: Below is an example - modify to extract data for your own visuals
-    genre_counts = df.groupby('genre').count()['message']
-    genre_names = list(genre_counts.index)
+    # extract data for all catagories
+    counts = df.iloc[:,7:].sum()
+    names_raw = list(df.iloc[:,7:].columns)
+    names = [' '.join(x.split('_')) for x in names_raw]
+
+    # extract data on message type
+    msg_type = [df['request'].values.sum(), 
+                df['offer'].values.sum()]
     
     # create visuals
-    # TODO: Below is an example - modify to create your own visuals
     graphs = [
         {
             'data': [
                 Bar(
-                    x=genre_names,
-                    y=genre_counts
+                    x=names,
+                    y=counts
                 )
             ],
 
             'layout': {
-                'title': 'Distribution of Message Genres',
+                'title': 'Breakdown of messages by category',
                 'yaxis': {
-                    'title': "Count"
-                },
-                'xaxis': {
-                    'title': "Genre"
+                    'title': "No of messages"
+                }
+                }
+            },
+        {
+            'data': [
+                Pie(
+                    values=msg_type,
+                    labels=['Request','Offer']
+                )
+            ],
+
+            'layout': {
+                'title': 'Message types "Requests" vs "Offers"'
                 }
             }
-        }
     ]
     
     # encode plotly graphs in JSON
